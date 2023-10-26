@@ -1,45 +1,41 @@
 ## Project Selected: <Enter project name>
 
 ## I. Introduction
-- Provide an overview of the analysis, indicating the goal of describing the types of testing used in the selected open-source project and explaining the rationale behind their choice.
+- The goal of this analysis was to see a real world application of the types of testing frameworks we have been learning in 317. Being able to see tests and look directly at the code from an outside view allows you to build your own strategy for testing and see how that applies and what was actually chosen.
 
 ## II. Types of Testing in the Project
 ### A. Unit Testing
-- Describe the role and purpose of unit testing in the project.
-- Identify specific components or modules that are subjected to unit testing.
-- Mention how unit tests are executed and the tools or frameworks used.
+- Regression and acceptance testing seem to be the biggest reason for this testing suite. There aren't large lists of parameterized tests to test all the edge cases, it simple confirms basic operaions.
+- The modules which were tested extensively were the add, display, and update/remove features of this application. And those modules make up essentially the entire application so these may not seem like a lot but it would be the entire app.
+- This test suite uses Selenium Webdriver testing environment.
 
 ### B. Integration Testing
-- Explain the importance of integration testing in the context of the project.
-- Identify the interactions between different modules, services, or components that are tested.
-- Highlight the methods used for conducting integration tests and tools employed.
+- This test suite uses integration between the adding and removing components while confirming the display and input functions still operate.
+- Selenium Webdriver is the only tool used for these test cases even with display and operation testing. The main way that testing is done (instead of pupeteering) it to make calls to functions and then check the css files returned to ensure things are displayed or hidden throughout.
 
 ### C. UI (User Interface) Testing
-- Describe the significance of UI testing in the project, especially if it's a web application or software with a graphical user interface.
-- Explain which aspects of the user interface are tested (e.g., functionality, usability, responsiveness).
-- Mention the testing frameworks, tools, or automation scripts used for UI testing.
+- Again, the javascript is run through Selenium Webdriver as the only tool. The tests don't use parametization but rely on small individual tests 
+- Css file are used for the confirmation of UI elements and the button presses are simulated by function calls on the backend (or js end which technically is still front end but this app only has that and the display).
 
 ### D. Other Types of Testing (if applicable)
-- If there are additional types of testing beyond unit, integration, and UI testing, outline and briefly explain them.
-- Provide insights into why these specific types of testing are relevant to the project's goals.
+- N/A
 
 ## III. Reasons for Choosing These Testing Types
-- Discuss the rationale behind selecting these particular testing types for the project.
-- Consider the project's goals, technology stack, and unique requirements when explaining the choice of testing methods.
-- Highlight the benefits and advantages of using these testing types in this context.
+- Because this project is so simple and the input so small, widespread edge case testing is not needed ad relatively impossible
+- When all of your items are simply unformatted strings, you only need test to see if one string works for it and this makes parameteriztion testing very inefficient.
+- This is not a high tech application so as long as the display featres operate as they should and the add and remove work, then this app has reached an acceptable level of confimraed correctness. This is accomplished through the basic unit testing and simple scenarios to show each feature works independatnly and together
+
 
 ## 2. Test Data Generation
 ### A. Static Test Data
-- Explain if and how static test data is used in the project.
-- Provide examples of scenarios where static test data is employed.
+- Static lists of items (strings) to be added are created for the tests
+- This is enough because all the test needs to confirm is that a single string works in the app for specific functions which then cofirms that all strings will work
 ### B. Dynamic Test Data
-- Explain if and how dynamic test data is used in the project.
-- Provide examples of scenarios where dynamic test data is generated.
+- No dynamic test data. All of the data is staticaly created. Only three strings are needed.
 
 ## 3. Test Doubles
-- Identify and explain the use of test doubles (e.g., mocks, stubs, fakes) in the project.
-- Specify the specific components, functions, or cases where test doubles are applied.
-- Discuss the purpose of using these test doubles in the testing strategy.
+- The test use a fake server to run all of the tests but otherwise there were not fakes, stubs, or doubles that I could find
+- Stubs would be important to use if this project used a lot of external tools and libraries. Then you could test your individual functions while not having to blindly trust that the other processes are working as they should be. This program doesn't use many of those and for what it does use, it gets around it be using the css file confirmations to keep even UI testing simple. 
 
 ## 4. Discussion on Testing Practices
 <!-- 
@@ -50,6 +46,5 @@ Look for the "Issues" tab on the repository's page.
 Use the search bar within the Issues tab to search for terms related to testing, such as "testing strategy," "test cases," or "test automation."
 -->
 - Investigate any discussions related to testing practices within the project.
-- Give a link to the Github PR or issue
-- Summarize key points or insights from these discussions.
-- Offer your interpretation of how the project's testing practices align with industry standards or best practices.
+- https://github.com/tastejs/todomvc/issues/1880
+- There is very little discussion of testing in any of the project's issues, but this discussion focused on where testing would be maintained and supported. The conclusion was to only maintain suporting tests for the production ready version of TodoMVC. The ain reason was because of how time consuming creating vast test suites for every verson would be so the contributors decided to focus there efforts on the place where the most good could come from as this is an open source project and not funded by people. I think this aligns with the view that testing is very important but it costs a lot of time and money and so if you have little of both you should then use it to make sure your code operates as acceptable as possible. This would mean supporting production read code (not production but the step before) so that you are confirming anything you put out has been tested as thouroughly as possible. This aligns with the industry standards of outputting code with acceptance testing. Now I think if the project were to be funded then a larger effort should be focused on testing. There are files in this project which outline which parts of the code is not tested at all for various reasons. This is unacceptable and if you have untested modules it can compromise the integrity of well tested modules. Therefore I believe this project is doing the best that it can but that if it were to be a paid service or anything other than a project for developers to learn frameworks and get their feet wet then it should have a much higher standard  fo testing.
