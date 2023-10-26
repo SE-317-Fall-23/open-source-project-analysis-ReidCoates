@@ -1,21 +1,20 @@
-## Project Selected: <Enter project name>
+## Project Selected: <Enter Todo MVC>
 
 ## I. Introduction
 - The goal of this analysis was to see a real world application of the types of testing frameworks we have been learning in 317. Being able to see tests and look directly at the code from an outside view allows you to build your own strategy for testing and see how that applies and what was actually chosen.
 
 ## II. Types of Testing in the Project
 ### A. Unit Testing
-- Regression and acceptance testing seem to be the biggest reason for this testing suite. There aren't large lists of parameterized tests to test all the edge cases, it simple confirms basic operaions.
-- The modules which were tested extensively were the add, display, and update/remove features of this application. And those modules make up essentially the entire application so these may not seem like a lot but it would be the entire app.
-- This test suite uses Selenium Webdriver testing environment.
+- N/A
 
 ### B. Integration Testing
-- This test suite uses integration between the adding and removing components while confirming the display and input functions still operate.
-- Selenium Webdriver is the only tool used for these test cases even with display and operation testing. The main way that testing is done (instead of pupeteering) it to make calls to functions and then check the css files returned to ensure things are displayed or hidden throughout.
+- N/A
 
 ### C. UI (User Interface) Testing
-- Again, the javascript is run through Selenium Webdriver as the only tool. The tests don't use parametization but rely on small individual tests 
+- Javascript is run through Selenium Webdriver as the only tool. The tests don't use parametization but rely on small individual tests 
 - Css file are used for the confirmation of UI elements and the button presses are simulated by function calls on the backend (or js end which technically is still front end but this app only has that and the display).
+- Selenium Webdriver is the only tool used for these test cases even with display and operation testing. The main way that testing is done (instead of pupeteering) it to make calls to functions and then check the css files returned to ensure things are displayed or hidden throughout.
+- Regression and acceptance testing seem to be the biggest reason for this testing suite. There aren't large lists of parameterized tests to test all the edge cases, it simple confirms basic operaions.
 
 ### D. Other Types of Testing (if applicable)
 - N/A
@@ -35,7 +34,7 @@
 
 ## 3. Test Doubles
 - The test use a fake server to run all of the tests but otherwise there were not fakes, stubs, or doubles that I could find
-- Stubs would be important to use if this project used a lot of external tools and libraries. Then you could test your individual functions while not having to blindly trust that the other processes are working as they should be. This program doesn't use many of those and for what it does use, it gets around it be using the css file confirmations to keep even UI testing simple. 
+- Stubs would be important to use if this project used a lot of external tools and libraries. Then you could test your individual functions while not having to blindly trust that the other processes are working as they should be. An example of this would be in you had a function which would use the current date to display an item as highlighted red (the project doesn't hve this). This program doesn't use any of those and for what it does use, it gets around it by using the css file confirmations to keep even UI testing simple. 
 
 ## 4. Discussion on Testing Practices
 <!-- 
