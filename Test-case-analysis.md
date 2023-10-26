@@ -34,6 +34,34 @@ test.it('should allow me to add todo items', function (done) {
 					.then(function () { done(); });
 			});
 
+this.enterItem = function (itemText) {
+		var self = this;
+		var nItems;
+		return self.getListItems()
+			.then(function (items) {
+				nItems = items.length;
+			})
+			.then(this.waitForNewItemInputField.bind(this))
+			.then(function (newItemInput) {
+				return newItemInput.sendKeys(itemText).then(function () { return newItemInput; });
+			})
+			.then(function (newItemInput) {
+				return browser.wait(function () {
+					// Hit Enter repeatedly until the text goes away
+					return newItemInput.sendKeys(webdriver.Key.ENTER)
+						.then(newItemInput.getAttribute.bind(newItemInput, 'value'))
+						.then(function (newItemInputValue) {
+							return newItemInputValue.length === 0;
+						});
+				}, DEFAULT_TIMEOUT);
+			})
+			.then(function () {
+				return self.waitForElement(self.getLastListItemLabelCss(nItems));
+			})
+			.then(this.waitForTextContent.bind(this, itemText.trim(),
+				'Expected new item label to read ' + itemText.trim()));
+	};
+
     // Add a single todo item to the list by creating a view for it, and
     // appending its element to the `<ul>`.
     AppView.prototype.addOne = function (todo) {
@@ -118,6 +146,34 @@ test.it('should clear text input field when an item is added', function (done) {
 				testOps.assertNewItemInputFieldText('')
 					.then(function () { done(); });
 			});
+
+this.enterItem = function (itemText) {
+		var self = this;
+		var nItems;
+		return self.getListItems()
+			.then(function (items) {
+				nItems = items.length;
+			})
+			.then(this.waitForNewItemInputField.bind(this))
+			.then(function (newItemInput) {
+				return newItemInput.sendKeys(itemText).then(function () { return newItemInput; });
+			})
+			.then(function (newItemInput) {
+				return browser.wait(function () {
+					// Hit Enter repeatedly until the text goes away
+					return newItemInput.sendKeys(webdriver.Key.ENTER)
+						.then(newItemInput.getAttribute.bind(newItemInput, 'value'))
+						.then(function (newItemInputValue) {
+							return newItemInputValue.length === 0;
+						});
+				}, DEFAULT_TIMEOUT);
+			})
+			.then(function () {
+				return self.waitForElement(self.getLastListItemLabelCss(nItems));
+			})
+			.then(this.waitForTextContent.bind(this, itemText.trim(),
+				'Expected new item label to read ' + itemText.trim()));
+	};
 
     // Add a single todo item to the list by creating a view for it, and
     // appending its element to the `<ul>`.
