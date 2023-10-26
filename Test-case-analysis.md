@@ -5,7 +5,7 @@
 ## I. Introduction
 - Provide a detailed description of two test cases in the selected open-source project.
 
-## II. Test Case 1: [Name of Test Case]
+## II. Test Case 1: [Add Two Todo Items]
 ### A. Description
 - This test case is a test in the suite which verifies the correct functionality of the Add New Todo Item. It adds two ites while checking twice to see if the first was added and then if the second overwrote the first or wether they both were correctly displayed on the todo list. This is checking the memory and no the display however so the code could be storing correctly but not displaying and this test would pass.
 ### B. Gherkin Syntax (if applicable)
@@ -98,7 +98,7 @@ test.it('should allow me to add todo items', function (done) {
 ### G. Expected State
 - The list will be expected to conatin both of the two added items. Nothing else is checked for.
 
-## III. Test Case 2: [Name of Test Case]
+## III. Test Case 2: [Clear Input Box after Item Addition]
 ### A. Description
 - The purpose of this test case is to ensure the text box is cleared after submitting an item to the todo list.
 ### B. Gherkin Syntax (if applicable)
